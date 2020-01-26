@@ -1,2 +1,6 @@
-# wordpress-nuxt-theme
-A Vuejs (Nuxt) theme made to pull data from a Headless GraphQL Wordpress
+# Theme setup   
+This theme is a NuxtJS / VueJS frontent for a headless Wordpress installation running the WPGraphQL plugin. 
+
+> MVP Guy Personal Website
+
+

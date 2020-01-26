@@ -1,0 +1,20 @@
+# !! must be the same as dev machine node version to avoid errors
+FROM node:11.10-alpine
+
+MAINTAINER Rodrigo Cauduro
+
+# Set environment variables
+ENV APP_ROOT /app
+ENV HOST 0.0.0.0
+
+# Create app directory
+RUN mkdir -p ${APP_ROOT}
+COPY . ${APP_ROOT}
+WORKDIR ${APP_ROOT}
+
+# should be run on local machine
+# RUN npm install
+
+# RUN npm rebuild node-sass
+
+EXPOSE 3000

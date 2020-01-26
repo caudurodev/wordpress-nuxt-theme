@@ -1,0 +1,26 @@
+{
+  posts {
+    edges {
+      node {
+        id
+        postId
+        slug
+        title
+        excerpt
+        date
+        author {
+          avatar {
+            url
+          }
+          name
+        }
+        commentCount
+        featuredImage {
+          ... on MediaItem {
+            sourceUrl(size: MEDIUM)
+          }
+        }
+      }
+    }
+  }
+}

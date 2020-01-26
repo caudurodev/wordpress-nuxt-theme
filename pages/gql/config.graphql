@@ -1,0 +1,54 @@
+{
+  generalSettings {
+    description
+    title
+  }
+  siteConfig:pageBy(uri: "site-config") {
+    gql{
+      footer
+      sitelogo {
+        ... on MediaItem {
+          sourceUrl(size: MEDIUM)
+        }
+      }
+    }
+  }
+  menus {
+    nodes {
+      id
+      menuName: name
+      menuItems {
+        edges {
+          node {
+            id
+            url
+            label
+            icon {
+              icon {
+                sourceUrl
+              }
+            }
+            connectedObject {
+              __typename
+              ... on Post {
+                id
+                slug
+                title
+              }
+              ... on Page {
+                id
+                slug
+                title
+              }
+              ... on MenuItem{
+                url
+                label
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

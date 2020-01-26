@@ -1,0 +1,23 @@
+{
+  pageBy(uri: "[xxxx]") {
+    id
+    pageId
+    title
+    content
+    date
+    uri
+    author {
+      description
+      avatar {
+        url
+      }
+      name
+    }
+    commentCount
+    featuredImage{
+      ... on MediaItem{
+        sourceUrl(size:LARGE)
+      }
+    }
+  }
+}

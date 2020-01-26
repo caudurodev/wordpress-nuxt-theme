@@ -1,0 +1,23 @@
+{
+  postBy(slug: "[xxxx]") {
+    id
+    postId
+    title
+    content
+    date
+    uri
+    author {
+      description
+      avatar {
+        url
+      }
+      name
+    }
+    commentCount
+    featuredImage{
+      ... on MediaItem{
+        sourceUrl(size:LARGE)
+      }
+    }
+  }
+}
