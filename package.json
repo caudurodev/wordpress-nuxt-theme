@@ -1,8 +1,8 @@
 {
   "name": "cauduro.dev",
   "version": "1.0.0",
-  "description": "MVP Guy Personal Website",
-  "author": "Rodrigo Cauduro",
+  "description": "cauduro.dev",
+  "author": "caudurodev",
   "private": true,
   "scripts": {
     "dev": "nuxt",
