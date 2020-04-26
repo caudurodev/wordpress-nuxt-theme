@@ -150,6 +150,11 @@ export default {
   @apply w-full;
 }
 
+/* override class added on mounted hook */
+.body-main pre[class*='language-'] {
+  margin: auto !important;
+}
+
 .body-main p,
 .body-main code,
 .body-main pre {
