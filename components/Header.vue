@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="z-20 site-header bg-white fixed w-full border-b">
-      <nav class="z-30 site-header flex flex-wrap justify-between ">
+      <nav class="z-30 site-header flex flex-wrap justify-between">
         <div class="flex items-center ml-8">
           <nuxt-link class="siteTitle" to="/">
             <img :alt="siteConfig.title" :src="config.sitelogo.sourceUrl" />
@@ -53,11 +53,11 @@
         </div>
         <div
           v-if="$mq === 'sm' || $mq === 'md'"
-          style="transform: scale(0.6); opacity:0.8;"
+          style="transform: scale(0.6); opacity: 0.8;"
         >
           <button
             :class="{ 'is-active': showMobileNav }"
-            class=" hamburger hamburger--minus"
+            class="hamburger hamburger--minus"
             type="button"
             aria-label="Menu"
             aria-controls="navigation"
@@ -78,13 +78,13 @@
     <transition name="slidedown">
       <div
         v-if="($mq === 'sm' || $mq === 'md') && showMobileNav"
-        class="mobile-nav "
+        class="mobile-nav"
       >
         <form class="w-full mb-0 bg-white" @submit.prevent="searchNewPage">
-          <div class="search-input  ">
+          <div class="search-input">
             <input
               v-model="searchString"
-              class="w-full px-6 flex font-mono appearance-none bg-white border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight  "
+              class="w-full px-6 flex font-mono appearance-none bg-white border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight"
               type="text"
               placeholder="Search..."
               aria-label="Search"
@@ -103,7 +103,7 @@
           v-for="menuItem in headerMenu"
           :key="menuItem.node.id"
           :to="openMenu(menuItem)"
-          class="mr-6 nav-mobile-links nav-mobile-spacing "
+          class="mr-6 nav-mobile-links nav-mobile-spacing"
         >
           {{ menuItem.node.label }}
         </nuxt-link>
@@ -123,7 +123,7 @@ export default {
   name: 'Header',
   components: {
     SearchWP,
-    Loader
+    Loader,
   },
   mixins: [LinkResolver],
   data() {
@@ -134,18 +134,18 @@ export default {
       searchThrottle: null,
       isLoading: null,
       prevScrollpos: null,
-      showMobileNav: false
+      showMobileNav: false,
     }
   },
   computed: {
     ...mapGetters(['headerMenu', 'siteConfig', 'headerIconsMenu']),
     ...mapGetters(['getBaseURL']),
-    ...mapState(['routerStatus', 'config'])
+    ...mapState(['routerStatus', 'config']),
   },
   watch: {
     routerStatus(status) {
       if (status === 'out') this.showMobileNav = false
-    }
+    },
   },
   mounted() {
     // show hide header on scroll
@@ -159,7 +159,7 @@ export default {
       if (this.searchString)
         this.$router.push({
           path: `/search/${this.searchString}/`,
-          id: this.searchString
+          id: this.searchString,
         })
     },
     showHideHeader() {
@@ -193,22 +193,22 @@ export default {
         `${this.$store.getters.getBaseURL}/wp-json/wp/v2/search`,
         {
           params: {
-            search: this.searchString
-          }
+            search: this.searchString,
+          },
         },
         {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         }
       )
 
       return Promise.all([searchResults])
-        .then(data => {
+        .then((data) => {
           this.isLoading = false
           return data[0].data
         })
-        .catch(error => {
+        .catch((error) => {
           this.isLoading = false
           if (error.response) {
             // Request made and server responded
@@ -251,8 +251,8 @@ export default {
           document.getElementById('headerSearchInput').focus()
         }, 500)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

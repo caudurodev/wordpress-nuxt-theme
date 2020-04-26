@@ -17,6 +17,7 @@ module.exports = {
     'vue'
   ],
   rules: {
+    "vue/no-v-html": "off",
     "semi": [2, "never"],
     "no-console": "off",
     "vue/max-attributes-per-line": "off",

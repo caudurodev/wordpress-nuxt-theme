@@ -2,7 +2,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['getBaseURL'])
+    ...mapGetters(['getBaseURL']),
   },
   mounted() {
     window.document.addEventListener('click', this.resolveInternalLinks)
@@ -67,6 +67,6 @@ export default {
         return
         // console.log('open link', item.node.url)
       }
-    }
-  }
+    },
+  },
 }

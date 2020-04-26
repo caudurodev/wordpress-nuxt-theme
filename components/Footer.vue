@@ -1,5 +1,6 @@
 <template>
-  <div class="mt-12 pt-8 pb-16 bg-grey-light ">
+  <div class="mt-12 pt-8 pb-16 bg-grey-light">
+    <!-- vue/no-v-html -->
     <span class="flex justify-center mx-4" v-html="footer"></span>
     <div class="flex justify-center mt-4">
       <nuxt-link
@@ -22,8 +23,8 @@ export default {
   mixins: [LinkResolver],
   computed: {
     ...mapGetters(['footerMenu']),
-    ...mapState(['footer'])
-  }
+    ...mapState(['footer']),
+  },
 }
 </script>
 

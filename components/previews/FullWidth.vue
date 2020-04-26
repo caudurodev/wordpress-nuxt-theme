@@ -43,9 +43,9 @@ export default {
   props: {
     post: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

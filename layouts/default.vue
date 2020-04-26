@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col min-h-screen ">
+  <div class="flex flex-col min-h-screen">
     <div class="flex-grow">
       <Header />
-      <nuxt class="bodymain container mx-auto px-6 pt-20 " />
+      <nuxt class="bodymain container mx-auto px-6 pt-20" />
     </div>
     <Footer />
   </div>
@@ -15,8 +15,8 @@ import Footer from '~/components/Footer'
 export default {
   components: {
     Header,
-    Footer
-  }
+    Footer,
+  },
 }
 </script>
 

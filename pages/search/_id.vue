@@ -4,7 +4,7 @@
       <div class="search-input">
         <input
           v-model="searchString"
-          class="w-full flex font-mono appearance-none bg-white border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight  "
+          class="w-full flex font-mono appearance-none bg-white border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight"
           type="text"
           placeholder="Search..."
           aria-label="Search"
@@ -46,30 +46,24 @@ import LinkResolver from '~/mixins/linkResolver'
 export default {
   name: 'SearchPage',
   mixins: [LinkResolver],
-  data() {
-    return { searchString: null }
-  },
-  computed: {
-    ...mapGetters(['moment'])
-  },
   asyncData({ store, params, $axios }) {
     const pageData = $axios.post(
       `${store.getters.getBaseURL}/graphql`,
       {
-        query: gqlConfig
+        query: gqlConfig,
       },
       {
         headers: {
           // cache duration in redis in seconds
           HTTP_X_GRAPHQL_CACHE_DURATION: 60 * 60,
           HTTP_X_GRAPHQL_CACHE: 'siteconfig',
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       }
     )
     const searchResult = store.dispatch('searchSite', params.id)
     return Promise.all([pageData, searchResult])
-      .then(data => {
+      .then((data) => {
         let returnData = data[0].data.data
         returnData.searchResults = data[1].data
         store.commit('SET_SETTINGS', returnData.generalSettings)
@@ -77,7 +71,7 @@ export default {
         store.commit('SET_FOOTER', returnData.footer.gql.footer)
         return returnData
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response) {
           // Request made and server responded
           console.log('error data:', error.response.data)
@@ -96,15 +90,21 @@ export default {
         // context.redirect('/error')
       })
   },
+  data() {
+    return { searchString: null }
+  },
+  computed: {
+    ...mapGetters(['moment']),
+  },
   methods: {
     searchNewPage() {
       if (this.searchString)
         this.$router.push({
           path: `/search/${this.searchString}/`,
-          id: this.searchString
+          id: this.searchString,
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

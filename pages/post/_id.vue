@@ -65,17 +65,27 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'SinglePost',
+  asyncData({ store, params, redirect }) {
+    return store
+      .dispatch('loadPage', {
+        gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],
+        redirect: redirect,
+      })
+      .then((returnData) => {
+        return returnData
+      })
+  },
   computed: {
-    ...mapGetters(['moment'])
+    ...mapGetters(['moment']),
   },
   mounted() {
     PrismLineNumbers
     Prism.highlightAll()
-    document.querySelectorAll('img').forEach(img => {
+    document.querySelectorAll('img').forEach((img) => {
       img.removeAttribute('width')
       img.removeAttribute('height')
     })
-    document.querySelectorAll('figure').forEach(fig => {
+    document.querySelectorAll('figure').forEach((fig) => {
       fig.removeAttribute('style')
     })
 
@@ -104,16 +114,6 @@ export default {
     //   })
     //   window.removeEventListener('scroll', () => {})
   },
-  asyncData({ store, params, redirect }) {
-    return store
-      .dispatch('loadPage', {
-        gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],
-        redirect: redirect
-      })
-      .then(returnData => {
-        return returnData
-      })
-  }
 }
 </script>
 

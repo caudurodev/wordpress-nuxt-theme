@@ -10,7 +10,7 @@
         <div v-else class="thumb"></div>
       </div>
 
-      <div class="px-4 mt-0 pt-0 pb-2 ">
+      <div class="px-4 mt-0 pt-0 pb-2">
         <div class="pb-20">
           <h2 class="mb-4 pb-0">
             <nuxt-link :to="`/post/${post.slug}`" v-html="post.title" />
@@ -19,7 +19,7 @@
         </div>
 
         <div class="bottom-stick">
-          <div class=" flex flex-wrap">
+          <div class="flex flex-wrap">
             <div class="">
               <img
                 v-if="post.author.avatar"
@@ -49,9 +49,9 @@ export default {
   props: {
     post: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 

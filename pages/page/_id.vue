@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div class=" w-2/3 mx-auto">
+    <div class="w-2/3 mx-auto">
       <h1 v-html="pageBy.title" />
       <span class="" v-html="pageBy.content" />
     </div>
@@ -19,12 +19,12 @@ export default {
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],
-        redirect: redirect
+        redirect: redirect,
       })
-      .then(returnData => {
+      .then((returnData) => {
         return returnData
       })
-  }
+  },
 }
 </script>
 

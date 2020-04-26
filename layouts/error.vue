@@ -9,6 +9,6 @@
 <script>
 export default {
   props: { error: { type: Object, default: null } },
-  layout: 'Static'
+  layout: 'Static',
 }
 </script>

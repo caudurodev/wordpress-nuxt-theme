@@ -6,14 +6,14 @@
         <template v-for="(post, index) in posts.edges">
           <FullWidth
             v-if="index === maxColumns()"
-            :post="post.node"
             :key="post.node.id"
+            :post="post.node"
             class="md:w-full w-full mx-auto sm:mt-0 pt-20 flex flex-wrap"
           ></FullWidth>
           <Card
             v-if="index !== maxColumns()"
-            :post="post.node"
             :key="post.node.id"
+            :post="post.node"
             class="sm:w-full md:w-1/2 lg:w-1/3 flex flex-wrap"
           ></Card>
         </template>
@@ -63,30 +63,30 @@ import FullWidth from '~/components/previews/FullWidth'
 import Card from '~/components/previews/Card'
 
 export default {
-  asyncData({ store, redirect }) {
-    return store
-      .dispatch('loadPage', {
-        gqlFiles: [gqlConfig, gqlHome],
-        redirect: redirect
-      })
-      .then(returnData => {
-        return returnData
-      })
-  },
   // asyncData({ store }) {
   //   return store.dispatch('loadPage', [gqlConfig, gqlHome]).then(returnData => {
   //     return returnData
   //   })
   // },
   components: { FullWidth, Card },
+  asyncData({ store, redirect }) {
+    return store
+      .dispatch('loadPage', {
+        gqlFiles: [gqlConfig, gqlHome],
+        redirect: redirect,
+      })
+      .then((returnData) => {
+        return returnData
+      })
+  },
   methods: {
     maxColumns() {
       if (this.$mq === 'xl') return 3
       if (this.$mq === 'lg') return 2
       if (this.$mq === 'sm' || this.$mq === 'md') return 1
       return 2
-    }
-  }
+    },
+  },
 }
 </script>
 

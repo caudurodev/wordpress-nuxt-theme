@@ -7,7 +7,7 @@ export const state = () => ({
   $env: null,
   routerStatus: null,
   footer: null,
-  config: null
+  config: null,
 })
 
 export const mutations = {
@@ -28,11 +28,11 @@ export const mutations = {
   },
   SET_SITE_CONFIG(state, payload) {
     state.config = payload
-  }
+  },
 }
 
 export const getters = {
-  getBaseURL: state => {
+  getBaseURL: (state) => {
     if (
       !process.server ||
       process.env.NODE_ENV === 'development' ||
@@ -48,7 +48,7 @@ export const getters = {
     // return 'http://wp:80/'
     return state.$env.NUXT_ENV_WP_CONTAINER
   },
-  stringToHash: () => string => {
+  stringToHash: () => (string) => {
     let hash = 0
     if (string.length == 0) return hash
     for (let i = 0; i < string.length; i++) {
@@ -62,20 +62,20 @@ export const getters = {
     return state.settings
   },
   headerMenu(state) {
-    return state.menus.nodes.filter(menu => {
+    return state.menus.nodes.filter((menu) => {
       if (menu.menuName === 'main') return menu
     })[0].menuItems.edges
   },
   headerIconsMenu(state) {
-    return state.menus.nodes.filter(menu => {
+    return state.menus.nodes.filter((menu) => {
       if (menu.menuName === 'headerIcons') return menu
     })[0].menuItems.edges
   },
   footerMenu(state) {
-    return state.menus.nodes.filter(menu => {
+    return state.menus.nodes.filter((menu) => {
       if (menu.menuName === 'footer') return menu
     })[0].menuItems.edges
-  }
+  },
 }
 
 export const actions = {
@@ -85,16 +85,16 @@ export const actions = {
         `${getters.getBaseURL}/wp-json/wp/v2/search`,
         {
           params: {
-            search: payload
-          }
+            search: payload,
+          },
         },
         {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         }
       )
-      .then(result => {
+      .then((result) => {
         return result
       })
       .catch(() => {
@@ -112,20 +112,20 @@ export const actions = {
     const pageData = axios.post(
       `${getters.getBaseURL}/graphql`,
       {
-        query: gqlRequest
+        query: gqlRequest,
       },
       {
         headers: {
           // cache duration in redis in seconds
           HTTP_X_GRAPHQL_CACHE_DURATION: 60 * 60,
           HTTP_X_GRAPHQL_CACHE: requestCacheID,
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       }
     )
 
     return Promise.all([pageData])
-      .then(data => {
+      .then((data) => {
         let returnData = data[0].data.data
         if (returnData.pageBy === null) {
           console.log('null pageBy')
@@ -141,7 +141,7 @@ export const actions = {
           return returnData
         }
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response) {
           // Request made and server responded
           console.log('err data:', err.response.data)
@@ -163,5 +163,5 @@ export const actions = {
   },
   updateRouterTransitionStatus: ({ commit }, payload) => {
     commit('SET_ROUTER_STATUS', payload)
-  }
+  },
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col min-h-screen ">
+  <div class="flex flex-col min-h-screen">
     <div class="flex-grow">
       <Header v-if="isLoaded" />
-      <nuxt class="bodymain container mx-auto px-6 pt-20 " />
+      <nuxt class="bodymain container mx-auto px-6 pt-20" />
     </div>
     <Footer v-if="isLoaded" />
   </div>
@@ -16,7 +16,7 @@ export default {
   name: 'Static',
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return { isLoaded: false }
@@ -25,7 +25,7 @@ export default {
     this.$store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig],
-        redirect: this.$router
+        redirect: this.$router,
       })
       .then(() => {
         this.isLoaded = true
@@ -33,7 +33,7 @@ export default {
         // this.$set(this, 'settings', returnData)
         // return returnData
       })
-  }
+  },
 }
 </script>
 

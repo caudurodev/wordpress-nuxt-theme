@@ -34,7 +34,7 @@ module.exports = {
    */
   router: {
     linkActiveClass: 'active-link',
-    middleware: 'routeStatus'
+    middleware: 'routeStatus',
   },
 
   /*
@@ -45,9 +45,9 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: './favicon.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: './favicon.png' }],
   },
 
   /*
@@ -80,11 +80,11 @@ module.exports = {
           'HOSTNAME',
           { key: 'OTHER_ENV_VAR', default: process.env.BASE_URL },
           { key: 'THIRD_ENV_VAR', secret: true },
-          { key: 'ANOTHER_ENV_VAR', default: process.env.NUXT_ENV_BASE_URL }
-        ]
-      }
+          { key: 'ANOTHER_ENV_VAR', default: process.env.NUXT_ENV_BASE_URL },
+        ],
+      },
     ],
-    'nuxt-purgecss'
+    'nuxt-purgecss',
   ],
   /*
    ** Axios module configuration
@@ -113,24 +113,24 @@ module.exports = {
         cssnano: {
           preset: 'default',
           discardComments: { removeAll: true },
-          zIndex: false
-        }
+          zIndex: false,
+        },
       },
       // Change the postcss-preset-env settings
       preset: {
         stage: 0, // enable all (experimental) polyfills
         autoprefixer: {
           cascade: false,
-          grid: true
-        }
-      }
+          grid: true,
+        },
+      },
     },
     extend(config, ctx) {
       // graphql loader
       config.module.rules.push({
         test: /\.graphql?$/,
         loader: 'webpack-graphql-loader',
-        exclude: /(node_modules)/
+        exclude: /(node_modules)/,
       })
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -138,9 +138,9 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
-    }
-  }
+    },
+  },
 }
