@@ -4,7 +4,7 @@
       <nav class="z-30 site-header flex flex-wrap justify-between">
         <div class="flex items-center ml-8">
           <nuxt-link class="siteTitle" to="/">
-            <img :alt="siteConfig.title" :src="config.sitelogo.sourceUrl" />
+            <h1 class="text-xs">{{ config.title }}</h1>
           </nuxt-link>
           <!-- desktop navigation main menu -->
           <div v-if="$mq === 'lg' || $mq === 'xl'">
@@ -37,18 +37,6 @@
             <button class="social-link border-none" @click="toggleSearch()">
               <img src="~/assets/svg/search.svg" />
             </button>
-          </div>
-          <div v-for="menuItem in headerIconsMenu" :key="menuItem.node.id">
-            <a
-              :href="menuItem.node.url"
-              :title="menuItem.node.label"
-              class="social-link"
-            >
-              <img
-                v-if="menuItem.node.icon.icon"
-                :src="menuItem.node.icon.icon.sourceUrl"
-              />
-            </a>
           </div>
         </div>
         <div
@@ -123,7 +111,7 @@ export default {
   name: 'Header',
   components: {
     SearchWP,
-    Loader,
+    Loader
   },
   mixins: [LinkResolver],
   data() {
@@ -134,18 +122,18 @@ export default {
       searchThrottle: null,
       isLoading: null,
       prevScrollpos: null,
-      showMobileNav: false,
+      showMobileNav: false
     }
   },
   computed: {
     ...mapGetters(['headerMenu', 'siteConfig', 'headerIconsMenu']),
     ...mapGetters(['getBaseURL']),
-    ...mapState(['routerStatus', 'config']),
+    ...mapState(['routerStatus', 'config'])
   },
   watch: {
     routerStatus(status) {
       if (status === 'out') this.showMobileNav = false
-    },
+    }
   },
   mounted() {
     // show hide header on scroll
@@ -159,7 +147,7 @@ export default {
       if (this.searchString)
         this.$router.push({
           path: `/search/${this.searchString}/`,
-          id: this.searchString,
+          id: this.searchString
         })
     },
     showHideHeader() {
@@ -193,22 +181,22 @@ export default {
         `${this.$store.getters.getBaseURL}/wp-json/wp/v2/search`,
         {
           params: {
-            search: this.searchString,
-          },
+            search: this.searchString
+          }
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
+            'Content-Type': 'application/json'
+          }
         }
       )
 
       return Promise.all([searchResults])
-        .then((data) => {
+        .then(data => {
           this.isLoading = false
           return data[0].data
         })
-        .catch((error) => {
+        .catch(error => {
           this.isLoading = false
           if (error.response) {
             // Request made and server responded
@@ -251,8 +239,8 @@ export default {
           document.getElementById('headerSearchInput').focus()
         }, 500)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

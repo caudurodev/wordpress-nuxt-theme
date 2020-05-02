@@ -73,9 +73,9 @@ export default {
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlHome],
-        redirect: redirect,
+        redirect: redirect
       })
-      .then((returnData) => {
+      .then(returnData => {
         return returnData
       })
   },
@@ -85,8 +85,8 @@ export default {
       if (this.$mq === 'lg') return 2
       if (this.$mq === 'sm' || this.$mq === 'md') return 1
       return 2
-    },
-  },
+    }
+  }
 }
 </script>
 

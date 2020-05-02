@@ -69,23 +69,23 @@ export default {
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],
-        redirect: redirect,
+        redirect: redirect
       })
-      .then((returnData) => {
+      .then(returnData => {
         return returnData
       })
   },
   computed: {
-    ...mapGetters(['moment']),
+    ...mapGetters(['moment'])
   },
   mounted() {
     PrismLineNumbers
     Prism.highlightAll()
-    document.querySelectorAll('img').forEach((img) => {
+    document.querySelectorAll('img').forEach(img => {
       img.removeAttribute('width')
       img.removeAttribute('height')
     })
-    document.querySelectorAll('figure').forEach((fig) => {
+    document.querySelectorAll('figure').forEach(fig => {
       fig.removeAttribute('style')
     })
 
@@ -113,7 +113,7 @@ export default {
     //     lax.removeElement(fig)
     //   })
     //   window.removeEventListener('scroll', () => {})
-  },
+  }
 }
 </script>
 

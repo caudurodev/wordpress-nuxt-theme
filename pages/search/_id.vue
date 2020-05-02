@@ -50,28 +50,29 @@ export default {
     const pageData = $axios.post(
       `${store.getters.getBaseURL}/graphql`,
       {
-        query: gqlConfig,
+        query: gqlConfig
       },
       {
         headers: {
           // cache duration in redis in seconds
           HTTP_X_GRAPHQL_CACHE_DURATION: 60 * 60,
           HTTP_X_GRAPHQL_CACHE: 'siteconfig',
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       }
     )
     const searchResult = store.dispatch('searchSite', params.id)
     return Promise.all([pageData, searchResult])
-      .then((data) => {
+      .then(data => {
         let returnData = data[0].data.data
         returnData.searchResults = data[1].data
         store.commit('SET_SETTINGS', returnData.generalSettings)
         store.commit('SET_MENUS', returnData.menus)
-        store.commit('SET_FOOTER', returnData.footer.gql.footer)
+        if (returnData.footer && returnData.footer.gql)
+          store.commit('SET_FOOTER', returnData.footer.gql.footer)
         return returnData
       })
-      .catch((error) => {
+      .catch(error => {
         if (error.response) {
           // Request made and server responded
           console.log('error data:', error.response.data)
@@ -94,17 +95,17 @@ export default {
     return { searchString: null }
   },
   computed: {
-    ...mapGetters(['moment']),
+    ...mapGetters(['moment'])
   },
   methods: {
     searchNewPage() {
       if (this.searchString)
         this.$router.push({
           path: `/search/${this.searchString}/`,
-          id: this.searchString,
+          id: this.searchString
         })
-    },
-  },
+    }
+  }
 }
 </script>
 

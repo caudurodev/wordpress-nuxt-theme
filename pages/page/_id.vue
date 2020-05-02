@@ -19,12 +19,12 @@ export default {
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],
-        redirect: redirect,
+        redirect: redirect
       })
-      .then((returnData) => {
+      .then(returnData => {
         return returnData
       })
-  },
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@ export default {
   name: 'Static',
   components: {
     Header,
-    Footer,
+    Footer
   },
   data() {
     return { isLoaded: false }
@@ -25,15 +25,12 @@ export default {
     this.$store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig],
-        redirect: this.$router,
+        redirect: this.$router
       })
       .then(() => {
         this.isLoaded = true
-        // console.log('data', returnData)
-        // this.$set(this, 'settings', returnData)
-        // return returnData
       })
-  },
+  }
 }
 </script>
 

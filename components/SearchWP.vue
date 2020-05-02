@@ -44,17 +44,17 @@ import VueSimpleSuggest from 'vue-simple-suggest'
 export default {
   name: 'SearchWP',
   components: {
-    VueSimpleSuggest,
+    VueSimpleSuggest
   },
   data() {
     return {
       searchString: null,
       isLoading: null,
-      isRouting: null,
+      isRouting: null
     }
   },
   computed: {
-    ...mapGetters(['getBaseURL']),
+    ...mapGetters(['getBaseURL'])
   },
   methods: {
     getSuggestionList() {
@@ -63,22 +63,22 @@ export default {
         `${this.$store.getters.getBaseURL}/wp-json/wp/v2/search`,
         {
           params: {
-            search: this.searchString,
-          },
+            search: this.searchString
+          }
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
+            'Content-Type': 'application/json'
+          }
         }
       )
 
       return Promise.all([searchResults])
-        .then((data) => {
+        .then(data => {
           this.isLoading = false
           return data[0].data
         })
-        .catch((error) => {
+        .catch(error => {
           this.isLoading = false
           if (error.response) {
             // Request made and server responded
@@ -115,8 +115,8 @@ export default {
         this.$router.push({ path: `/post/${slug}/` })
         // return `/post/${item.node.connectedObject.slug}/`
       }
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="postcss">

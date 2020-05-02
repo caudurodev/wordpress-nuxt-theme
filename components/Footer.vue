@@ -23,8 +23,8 @@ export default {
   mixins: [LinkResolver],
   computed: {
     ...mapGetters(['footerMenu']),
-    ...mapState(['footer']),
-  },
+    ...mapState(['footer'])
+  }
 }
 </script>
 
