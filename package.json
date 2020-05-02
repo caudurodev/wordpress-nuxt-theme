@@ -12,13 +12,10 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "cypress": "./node_modules/.bin/cypress open",
-    "test": "echo \"Error: I SHOULD FAIL LOLOLOLOLOL \" && exit 1"
+    "cypress": "./node_modules/.bin/cypress open"
   },
   "pre-commit": [
-    "test",
-    "lint",
-    "cypress"
+    "lint"
   ],
   "dependencies": {
     "@nuxtjs/axios": "^5.9.2",
