@@ -26,6 +26,7 @@
     "nuxt": "^2.11.0",
     "nuxt-env": "^0.1.0",
     "prismjs": "^1.17.1",
+    "serve": "^11.3.0",
     "vue": "^2.6.11",
     "vue-mq": "^1.0.1",
     "vue-server-renderer": "^2.6.11",

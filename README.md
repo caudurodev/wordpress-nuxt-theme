@@ -32,3 +32,10 @@ Edit the .env file to point to your API endpoint before starting nuxt.
 ```$ npm run build && npm start```
 
 
+# Static File Generation
+Useful for deploying in serverless (github, netlify) or simple hosting environments / CDN
+
+
+
+
+

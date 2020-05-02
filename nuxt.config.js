@@ -1,33 +1,45 @@
 const pkg = require('./package')
 const path = require('path')
 require('dotenv').config()
-// const axios = require('axios')
+const axios = require('axios')
 
 module.exports = {
   mode: 'universal',
 
-  // generate: {
-  //   routes() {
-  //     const baseURL = 'http://localhost/'
+  generate: {
+    async routes() {
+      const baseURL = `http://localhost/wp-json/`
+      console.log('baseURL', baseURL)
+      let routes = ['/']
 
-  //     // all posts
-  //     // wp-json/wp/v2/posts/
-  //     // each post
-  //     // wp-json/wp/v2/posts/slug
+      // all posts
+      // wp-json/wp/v2/posts/
+      // each post
+      // wp-json/wp/v2/posts/slug
 
-  //     // all pages
-  //     // wp-json/wp/v2/pages/
-  //     // each post
-  //     // wp-json/wp/v2/pages/slug
+      // all pages
+      // wp-json/wp/v2/pages/
+      // each post
+      // wp-json/wp/v2/pages/slug
 
-  //     // get all posts and pages and render
-  //     return axios.get(`${baseURL}wp/v2/posts/`).then(res => {
-  //       return res.data.map(post => {
-  //         return '/post/' + post.slug
-  //       })
-  //     })
-  //   }
-  // },
+      // get all posts and pages and render
+      console.log('get', `${baseURL}wp/v2/posts/`)
+      await axios.get(`${baseURL}wp/v2/posts/`).then(res => {
+        res.data.map(post => {
+          routes.push('/post/' + post.slug)
+        })
+      })
+
+      await axios.get(`${baseURL}wp/v2/pages/`).then(res => {
+        res.data.map(page => {
+          routes.push('/pages/' + page.slug)
+        })
+      })
+
+      console.log('routes', routes)
+      return routes
+    }
+  },
 
   /*
    ** Custom router config
