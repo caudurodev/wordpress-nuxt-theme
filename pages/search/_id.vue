@@ -61,6 +61,7 @@ export default {
         }
       }
     )
+
     const searchResult = store.dispatch('searchSite', params.id)
     return Promise.all([pageData, searchResult])
       .then(data => {

@@ -1,7 +1,6 @@
 <template>
   <section class="container">
     <div>
-      <!-- mq: {{ $mq }} == {{ maxColumns() }} -->
       <div class="flex flex-wrap mb-4 w-full md:w-3/4 mx-auto">
         <template v-for="(post, index) in posts.edges">
           <FullWidth
@@ -17,40 +16,6 @@
             class="sm:w-full md:w-1/2 lg:w-1/3 flex flex-wrap"
           ></Card>
         </template>
-        <!-- <div class="w-full">
-          <div class="flex flex-wrap">
-            <div
-              v-for="post in posts.edges"
-              :key="post.node.id"
-              class="sm:w-full md:w-1/2 lg:w-1/3"
-            >
-              <div class="card">
-                <h2 class="mb-1 pb-0">
-                  <nuxt-link
-                    :to="`/post/${post.node.slug}`"
-                    v-html="post.node.title"
-                  />
-                </h2>
-                <div class="flex flex-wrap mb-3">
-                  <div>
-                    <h3 class="font-mono text-grey-dark mb-0 pb-0">
-                      {{ post.node.author.name }}
-                    </h3>
-                    <h4 class="font-mono text-grey py-0 my-0">
-                      {{ $moment(post.node.date).fromNow() }}
-                    </h4>
-                  </div>
-                </div>
-                <img
-                  v-if="post.node.featuredImage"
-                  :src="post.node.featuredImage.sourceUrl"
-                  class="thumb"
-                />
-                <p class="" v-html="post.node.excerpt" />
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </section>
@@ -63,13 +28,11 @@ import FullWidth from '~/components/previews/FullWidth'
 import Card from '~/components/previews/Card'
 
 export default {
-  // asyncData({ store }) {
-  //   return store.dispatch('loadPage', [gqlConfig, gqlHome]).then(returnData => {
-  //     return returnData
-  //   })
-  // },
   components: { FullWidth, Card },
-  asyncData({ store, redirect }) {
+  asyncData({ store, redirect, payload }) {
+    if (payload) {
+      console.log('home payload', payload)
+    }
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlHome],

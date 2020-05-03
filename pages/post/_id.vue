@@ -65,7 +65,10 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'SinglePost',
-  asyncData({ store, params, redirect }) {
+  asyncData({ store, params, redirect, payload }) {
+    if (payload) {
+      console.log('post payload', payload)
+    }
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlRequest.replace('[xxxx]', params.id)],

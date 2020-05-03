@@ -26,13 +26,13 @@ module.exports = {
       console.log('get', `${baseURL}wp/v2/posts/`)
       await axios.get(`${baseURL}wp/v2/posts/`).then(res => {
         res.data.map(post => {
-          routes.push('/post/' + post.slug)
+          routes.push({ route: '/post/' + post.slug, payload: post })
         })
       })
 
       await axios.get(`${baseURL}wp/v2/pages/`).then(res => {
         res.data.map(page => {
-          routes.push('/pages/' + page.slug)
+          routes.push('/page/' + page.slug)
         })
       })
 
