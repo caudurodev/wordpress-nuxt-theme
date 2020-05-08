@@ -29,10 +29,7 @@ import Card from '~/components/previews/Card'
 
 export default {
   components: { FullWidth, Card },
-  asyncData({ store, redirect, payload }) {
-    if (payload) {
-      console.log('home payload', payload)
-    }
+  asyncData({ store, redirect }) {
     return store
       .dispatch('loadPage', {
         gqlFiles: [gqlConfig, gqlHome],

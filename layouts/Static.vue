@@ -78,7 +78,7 @@ h6 {
 .link-style {
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-color: #509eff;
+  text-decoration-color: var(--main-color);
   text-decoration-thickness: 3px;
   text-decoration-skip-ink: none;
 }

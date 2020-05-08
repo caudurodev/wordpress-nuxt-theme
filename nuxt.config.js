@@ -1,45 +1,46 @@
 const pkg = require('./package')
 const path = require('path')
 require('dotenv').config()
-const axios = require('axios')
+// const axios = require('axios')
 
 module.exports = {
   mode: 'universal',
 
-  generate: {
-    async routes() {
-      const baseURL = `http://localhost/wp-json/`
-      console.log('baseURL', baseURL)
-      let routes = ['/']
+  // nuxt does not fetch async api requests with generate
+  // generate: {
+  //   async routes() {
+  //     const baseURL = `http://localhost/wp-json/`
+  //     console.log('baseURL', baseURL)
+  //     let routes = ['/']
 
-      // all posts
-      // wp-json/wp/v2/posts/
-      // each post
-      // wp-json/wp/v2/posts/slug
+  //     // all posts
+  //     // wp-json/wp/v2/posts/
+  //     // each post
+  //     // wp-json/wp/v2/posts/slug
 
-      // all pages
-      // wp-json/wp/v2/pages/
-      // each post
-      // wp-json/wp/v2/pages/slug
+  //     // all pages
+  //     // wp-json/wp/v2/pages/
+  //     // each post
+  //     // wp-json/wp/v2/pages/slug
 
-      // get all posts and pages and render
-      console.log('get', `${baseURL}wp/v2/posts/`)
-      await axios.get(`${baseURL}wp/v2/posts/`).then(res => {
-        res.data.map(post => {
-          routes.push({ route: '/post/' + post.slug, payload: post })
-        })
-      })
+  //     // get all posts and pages and render
+  //     console.log('get', `${baseURL}wp/v2/posts/`)
+  //     await axios.get(`${baseURL}wp/v2/posts/`).then(res => {
+  //       res.data.map(post => {
+  //         routes.push({ route: '/post/' + post.slug, payload: post })
+  //       })
+  //     })
 
-      await axios.get(`${baseURL}wp/v2/pages/`).then(res => {
-        res.data.map(page => {
-          routes.push('/page/' + page.slug)
-        })
-      })
+  //     await axios.get(`${baseURL}wp/v2/pages/`).then(res => {
+  //       res.data.map(page => {
+  //         routes.push('/page/' + page.slug)
+  //       })
+  //     })
 
-      console.log('routes', routes)
-      return routes
-    }
-  },
+  //     console.log('routes', routes)
+  //     return routes
+  //   }
+  // },
 
   /*
    ** Custom router config
@@ -65,7 +66,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#509EFF' },
+  loading: { color: process.env.COLOR_SECONDARY || '#509EFF' },
 
   /*
    ** Global CSS
@@ -90,9 +91,19 @@ module.exports = {
           'BASE_URL',
           'WP_CONTAINER',
           'HOSTNAME',
-          { key: 'OTHER_ENV_VAR', default: process.env.BASE_URL },
-          { key: 'THIRD_ENV_VAR', secret: true },
-          { key: 'ANOTHER_ENV_VAR', default: process.env.NUXT_ENV_BASE_URL }
+          {
+            key: 'FAVICON',
+            default: process.env.FAVICON || './assets/svg/favicon.svg'
+          },
+          {
+            key: 'SITE_LOGO',
+            default: process.env.SITE_LOGO || './assets/svg/logo.svg'
+          },
+          { key: 'COLOR_MAIN', default: process.env.COLOR_MAIN || '10dcd1' },
+          {
+            key: 'COLOR_SECONDARY',
+            default: process.env.COLOR_SECONDARY || '509eff'
+          }
         ]
       }
     ],

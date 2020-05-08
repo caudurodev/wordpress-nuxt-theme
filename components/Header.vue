@@ -3,11 +3,22 @@
     <div class="z-20 site-header bg-white fixed w-full border-b">
       <nav class="z-30 site-header flex flex-wrap justify-between">
         <div class="flex items-center ml-8">
-          <nuxt-link class="siteTitle" to="/">
-            <h1 class="text-xs">{{ config.title }}</h1>
-          </nuxt-link>
+          <div>
+            <nuxt-link class="siteTitle" to="/">
+              <img
+                v-if="$env.SITE_LOGO"
+                :src="$env.SITE_LOGO"
+                :alt="config.title"
+                :title="config.title"
+                class="mt-2"
+              />
+              <h1 v-if="!$env.SITE_LOGO" class="text-xs uppercase">
+                {{ config.title }}
+              </h1>
+            </nuxt-link>
+          </div>
           <!-- desktop navigation main menu -->
-          <div v-if="$mq === 'lg' || $mq === 'xl'">
+          <div v-if="$mq === 'lg' || $mq === 'xl'" class="ml-4">
             <nuxt-link
               v-for="menuItem in headerMenu"
               :key="menuItem.node.id"
@@ -255,7 +266,7 @@ export default {
 .siteTitle {
   @apply font-bold font-mono text-base mr-5 p-0;
   text-decoration: none;
-  color: #10dcd1;
+  color: var(--main-color);
 }
 .social-link {
   @apply font-mono uppercase font-normal text-xs border-l-2 block flex p-4;
@@ -269,7 +280,7 @@ export default {
 .active-link {
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-color: #10dcd1;
+  text-decoration-color: var(--main-color);
   text-decoration-thickness: 2px;
 }
 

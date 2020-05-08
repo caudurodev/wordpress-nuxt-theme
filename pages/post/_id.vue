@@ -1,53 +1,59 @@
 <template>
-  <section class="flex flex-wrap w-full">
-    <div class="body-other">
-      <h1 v-html="postBy.title" />
-      <div class="flex flex-wrap">
-        <div>
-          <img
-            v-if="postBy.author.avatar"
-            :src="postBy.author.avatar.url"
-            class="avatar"
-          />
-        </div>
+  <div>
+    <section class="flex flex-wrap body-other sm:w-2/3 w-full">
+      <div>
+        <h1 v-html="postBy.title" />
+        <div class="flex flex-wrap">
+          <div>
+            <img
+              v-if="postBy.author.avatar"
+              :src="postBy.author.avatar.url"
+              class="avatar"
+            />
+          </div>
 
-        <div>
-          <h3 class="font-mono text-grey-dark mt-5 pt-0 mx-4 mb-0 pb-0">
-            {{ postBy.author.name }}
-          </h3>
-          <h4 class="font-mono text-grey ml-4 pt-0 mt-1">
-            {{ $moment(postBy.date).fromNow() }}
-          </h4>
+          <div>
+            <h3 class="font-mono text-grey-dark mt-5 pt-0 mx-4 mb-0 pb-0">
+              {{ postBy.author.name }}
+            </h3>
+            <h4 class="font-mono text-grey ml-4 pt-0 mt-1">
+              {{ $moment(postBy.date).fromNow() }}
+            </h4>
+          </div>
         </div>
       </div>
-    </div>
-    <img
-      v-if="postBy.featuredImage"
-      :src="postBy.featuredImage.sourceUrl"
-      class="featured-image"
-    />
-    <div class="body-main" v-html="postBy.content"></div>
-    <div class="body-other mt-8 pt-8">
-      <div class="flex border-t-2 border-b-2 py-8 px-4">
-        <div class="mx-auto">
-          <img
-            v-if="postBy.author.avatar"
-            :src="postBy.author.avatar.url"
-            class="avatar-big"
-          />
-        </div>
+    </section>
+    <section>
+      <img
+        v-if="postBy.featuredImage"
+        :src="postBy.featuredImage.sourceUrl"
+        class="featured-image"
+      />
+    </section>
+    <section class="flex flex-wrap sm:w-2/3 w-full body-main">
+      <div v-html="postBy.content"></div>
+      <div class="mt-8 pt-8  w-full">
+        <div class="flex border-t-2 border-b-2 py-8 px-4">
+          <div class="mx-auto">
+            <img
+              v-if="postBy.author.avatar"
+              :src="postBy.author.avatar.url"
+              class="avatar-big"
+            />
+          </div>
 
-        <div class="flex-1 mx-auto ml-6">
-          <h3 class="font-mono text-grey-dark mt-5 pt-0 mx-4 mb-0 pb-0">
-            {{ postBy.author.name }}
-          </h3>
-          <p class="font-mono text-grey ml-4 pt-0 mt-1">
-            {{ postBy.author.description }}
-          </p>
+          <div class="flex-1 mx-auto ml-6">
+            <h3 class="font-mono text-grey-dark mt-5 pt-0 mx-4 mb-0 pb-0">
+              {{ postBy.author.name }}
+            </h3>
+            <p class="font-mono text-grey ml-4 pt-0 mt-1">
+              {{ postBy.author.description }}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -122,10 +128,10 @@ export default {
 
 <style lang="postcss">
 .body-main {
-  @apply w-full mx-auto;
+  @apply mx-auto;
 }
 .body-other {
-  @apply w-full mx-auto;
+  @apply mx-auto;
 }
 
 .featured-image {
@@ -153,6 +159,13 @@ export default {
   @apply w-full;
 }
 
+.body-main blockquote {
+  @apply bg-grey-lighter italic pr-6 border-l-8 pl-6 pt-2 pb-4;
+}
+.body-main blockquote cite {
+  @apply text-sm;
+}
+
 /* override class added on mounted hook */
 .body-main pre[class*='language-'] {
   margin: auto !important;
@@ -163,7 +176,7 @@ export default {
 .body-main pre {
   @apply my-6;
 }
-@screen sm {
+/* @screen sm {
   .body-main p,
   .body-main code,
   .body-main pre,
@@ -176,12 +189,12 @@ export default {
   .body-main h4,
   .body-main h5,
   .body-main h6 {
-    @apply w-2/3 mx-auto;
+    @apply w-full mx-auto;
   }
   .body-other {
-    @apply w-2/3 mx-auto;
+    @apply w-full mx-auto;
   }
-}
+} */
 .avatar {
   @apply h-12 w-12 rounded-full;
   object-fit: cover;
@@ -193,6 +206,16 @@ export default {
 @screen sm {
   .avatar-big {
     @apply h-16 w-16;
+  }
+}
+/* @screen md {
+  .featured-image {
+    height: 50vh;
+  }
+} */
+@screen lg {
+  .featured-image {
+    height: 70vh;
   }
 }
 </style>

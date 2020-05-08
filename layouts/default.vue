@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div :style="injectedStyle" class="flex flex-col min-h-screen">
     <div class="flex-grow">
       <Header />
       <nuxt class="bodymain container mx-auto px-6 pt-20" />
@@ -16,6 +16,14 @@ export default {
   components: {
     Header,
     Footer
+  },
+  computed: {
+    injectedStyle() {
+      return {
+        '--main-color': `#${this.$env.COLOR_MAIN}` || `#000000`,
+        '--secondary-color': `#${this.$env.COLOR_SECONDARY}` || `#cccccc`
+      }
+    }
   }
 }
 </script>
@@ -23,6 +31,10 @@ export default {
 <style lang="postcss">
 @tailwind preflight;
 @tailwind utilities;
+body {
+  --main-color: #000000;
+  --secondary-color: #cccccc;
+}
 
 /* #__layout, */
 
@@ -64,7 +76,7 @@ h6 {
 .link-style {
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-color: #509eff;
+  text-decoration-color: var(--secondary-color);
   text-decoration-thickness: 3px;
   text-decoration-skip-ink: none;
 }
