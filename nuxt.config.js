@@ -1,4 +1,4 @@
-const pkg = require('./package')
+// const pkg = require('./package')
 const path = require('path')
 require('dotenv').config()
 // const axios = require('axios')
@@ -54,11 +54,15 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: process.env.SITE_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.SITE_DESCRIPTION
+      }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: './favicon.png' }]
   },
